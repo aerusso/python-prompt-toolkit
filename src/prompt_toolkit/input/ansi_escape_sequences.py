@@ -62,7 +62,7 @@ ANSI_SEQUENCES: dict[str, Keys | tuple[Keys, ...]] = {
     # handle backspace and control-h individually for the few terminals that
     # support it. (Most terminals send ControlH when backspace is pressed.)
     # See: http://www.ibb.net/~anne/keyboard.html
-    "\x7f": Keys.ControlH,
+    "\x7f": Keys.ControlQuestion,
     # --
     # Various
     "\x1b[1~": Keys.Home,  # tmux

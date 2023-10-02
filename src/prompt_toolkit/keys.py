@@ -1,4 +1,5 @@
 from __future__ import annotations
+import sys
 
 from enum import Enum
 
@@ -60,6 +61,8 @@ class Keys(str, Enum):
     Control8 = "c-8"
     Control9 = "c-9"
     Control0 = "c-0"
+
+    ControlQuestion = 'c-?'
 
     ControlShift1 = "c-s-1"
     ControlShift2 = "c-s-2"
@@ -195,7 +198,8 @@ class Keys(str, Enum):
     ControlSpace = ControlAt
     Tab = ControlI
     Enter = ControlM
-    Backspace = ControlH
+    Backspace = 'backspace'
+    ControlBackspace = 'c-backspace'
 
     # ShiftControl was renamed to ControlShift in
     # 888fcb6fa4efea0de8333177e1bbc792f3ff3c24 (20 Feb 2020).
@@ -211,6 +215,7 @@ ALL_KEYS: list[str] = [k.value for k in Keys]
 # Aliases.
 KEY_ALIASES: dict[str, str] = {
     "backspace": "c-h",
+    "c-backspace": "c-h",
     "c-space": "c-@",
     "enter": "c-m",
     "tab": "c-i",
@@ -220,3 +225,7 @@ KEY_ALIASES: dict[str, str] = {
     "s-c-home": "c-s-home",
     "s-c-end": "c-s-end",
 }
+
+if sys.platform == 'linux':
+    KEY_ALIASES['backspace'] = 'c-?'
+    KEY_ALIASES['c-backspace'] = 'c-h'
